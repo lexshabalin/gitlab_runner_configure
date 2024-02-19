@@ -8,11 +8,22 @@
     mode: '0644'
   become: true
 
+- name: Copy undraw.svg
+  template:
+    src: "{{ role_path }}/files/register.sh"
+    dest: "/tmp/register.sh"
+    mode: '0644'
+  become: true
+
 - name: Make script exec
   shell: chmod +x /tmp/script.deb.sh
   become: true
 
-- name: For runner
+- name: Make script exec
+  shell: chmod +x /tmp/register.sh
+  become: true
+
+- name: Add gitlab-runner repo
   shell: /tmp/script.deb.sh
   become: true
 
@@ -49,4 +60,4 @@
   become: true
 
 - name: Register runner
-  shell: echo Hello! > /home/rh/hi.txt
+  shell: /tmp/register.sh
