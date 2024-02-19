@@ -4,11 +4,11 @@
 - name: Copy undraw.svg 
   template:
     src: "{{ role_path }}/files/script.deb.sh"
-    dest: "/home/rh/script.deb.sh"
+    dest: "/tmp/script.deb.sh"
   become: true
 
 - name: For runner
-  shell: /home/rh/script.deb.sh
+  shell: /tmp/script.deb.sh
   become: true
 
 - name: Install req packages
