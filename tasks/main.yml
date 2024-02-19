@@ -5,7 +5,6 @@
   template:
     src: "{{ role_path }}/files/script.deb.sh"
     dest: "/tmp/script.deb.sh"
-    mode: '0664'
   become: true
 
 - name: For runner
