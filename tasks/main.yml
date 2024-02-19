@@ -1,25 +1,25 @@
 ---
 # tasks file for gitlab_runner_configure
 
-- name: Copy undraw.svg 
+- name: Copy repo script
   template:
     src: "{{ role_path }}/files/script.deb.sh"
     dest: "/tmp/script.deb.sh"
     mode: '0644'
   become: true
 
-- name: Copy undraw.svg
+- name: Copy register script
   template:
     src: "{{ role_path }}/files/register.sh"
     dest: "/tmp/register.sh"
     mode: '0644'
   become: true
 
-- name: Make script exec
+- name: Make repo script exec
   shell: chmod +x /tmp/script.deb.sh
   become: true
 
-- name: Make script exec
+- name: Make register script exec
   shell: chmod +x /tmp/register.sh
   become: true
 
