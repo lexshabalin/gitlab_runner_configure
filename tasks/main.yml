@@ -8,6 +8,10 @@
     mode: '0644'
   become: true
 
+- name: Make script exec
+  shell: chmod +x /tmp/script.deb.sh
+  become: true
+
 - name: For runner
   shell: /tmp/script.deb.sh
   become: true
