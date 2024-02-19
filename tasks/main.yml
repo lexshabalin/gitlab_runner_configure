@@ -16,13 +16,35 @@
     state: present
   become: true
 
+#- name: Ansible user install 
+#  shell: python3 -m pip install --user ansible
+#  become: true
 
-- name: Ansible user install 
-  shell: python3 -m pip install --user ansible
+#- name: Install ansible
+#  ansible.builtin.apt:
+#    name:
+#      - ansible
+#    state: present
+#  become: true
 
-- name: Install ansible
-  ansible.builtin.apt:
-    name:
-      - ansible
-    state: present
+- name: add-priveleg-true
+  shell: sudo sed -i "30s~.*~    privileged = true~" /etc/gitlab-runner/config.toml
+
+- name: Add gitlab-runner to group 'docker'
+  user:
+    name: gitlab-runner
+    groups: docker
+    append: yes
   become: true
+
+- name: Change ownership of /etc/systemd/system
+  ansible.builtin.file:
+    path: /etc/systemd/system
+    state: directory
+    recurse: yes
+    owner: gitlab-runner
+    group: gitlab-runner
+  become: true
+
+- name: Register runner
+  
