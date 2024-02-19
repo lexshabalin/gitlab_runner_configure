@@ -1,0 +1,28 @@
+---
+# tasks file for gitlab_runner_configure
+
+- name: Install req packages
+  ansible.builtin.apt:
+    name:
+      - docker.io
+      - docker-compose
+      - python3-pip 
+      - python3.8-venv
+      - gitlab-runner
+      - ca-certificates
+      - git        
+      - gnupg         
+      - lsb-release
+    state: present
+  become: true
+
+
+- name: Ansible user install 
+  shell: python3 -m pip install --user ansible
+
+- name: Install ansible
+  ansible.builtin.apt:
+    name:
+      - ansible
+    state: present
+  become: true
